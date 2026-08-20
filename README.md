@@ -58,13 +58,13 @@ This repository includes two finite element implementations of the chemo-mechani
 
 1. **Linear Elastic Model**
    - Uses a linear elastic constitutive response for the mechanical field.
-   - Includes coupled fluid diffusion, molecular-weight reduction, monomer transport, crystallization evolution, degradation, swelling, and mechanical deformation.
+   - Includes coupled fluid diffusion, molecular-weight reduction, monomer transport, degradation, swelling, and mechanical deformation.
 
 2. **Linear Viscoelastic Model**
    - Extends the same chemo-mechanical framework by including time-dependent viscoelastic stress relaxation in the mechanical response.
    - This version is intended for cases where both hydrolytic degradation and viscoelastic relaxation contribute to the evolving stress and deformation.
 
-The example codes provided in this repository generate the computational geometry directly within FEniCS. For example, the linear elastic implementation includes an internally generated one-eighth symmetry mesh and directly assigns the symmetry and external-surface boundary markers within the code. :contentReference[oaicite:0]{index=0} :contentReference[oaicite:1]{index=1}
+The example codes provided in this repository generate the computational geometry directly within FEniCS. For example, the supplied model uses an internally generated one-eighth symmetry mesh and directly assigns the symmetry and external-surface boundary markers within the code. :contentReference[oaicite:0]{index=0} :contentReference[oaicite:1]{index=1}
 
 For user-defined or more complex CAD geometries, the mesh can instead be generated externally using Gmsh and imported into FEniCS. In that case, the mesh geometry can be supplied through the converted `.xml` mesh file, and the corresponding boundary or facet markers can be loaded using the associated `facet_region.xml` file.
 
@@ -74,5 +74,7 @@ A typical imported-mesh workflow is:
 from dolfin import *
 
 mesh = Mesh("model.xml")
+boundaries = MeshFunction("size_t", mesh, "model_facet_region.xml")
+```
 boundaries = MeshFunction("size_t", mesh, "model_facet_region.xml")
 ```
