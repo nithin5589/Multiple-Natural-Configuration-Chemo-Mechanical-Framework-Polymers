@@ -1,6 +1,6 @@
 # ================================================================
 # 3D MULTIPHYSICS MODEL WITH 1/8 SYMMETRY
-# Hydrolytic Degradation + Swelling + Mechanical Response
+# Hydrolytic Degradation + Mechanical Response
 #
 # Fields:
 #   Cf  = Fluid concentration
@@ -36,7 +36,7 @@ df = pd.DataFrame(columns=[
     "Boundary Conc of Fluid"
 ])
 
-results = XDMFFile(os.path.join(directory, "LE_Cube_lowDm.xdmf"))
+results = XDMFFile(os.path.join(directory, "Chemo_LE_Results.xdmf"))
 results.parameters["flush_output"] = True
 results.parameters["functions_share_mesh"] = True
 
@@ -195,7 +195,7 @@ u_n = Function(V)
 # USER-DEFINED INITIAL CONDITIONS
 # ================================================================
 Cf_0 = Expression("0.0", degree=1)
-N_0_initial = Expression("63810.0", degree=1)
+N_0_initial = Expression("", degree=1)    # Enter your initial molecular weight
 Cm_0 = Expression("0.0", degree=1)
 deg_0 = Expression("0.0", degree=1)
 ue_0 = Expression(("0.0", "0.0", "0.0"), degree=1)
@@ -222,20 +222,20 @@ Cf_n, N_n, Cm_n, deg_n, ue_n = split(u_n)
 # ================================================================
 
 # Fluid diffusion parameters
-Df = Constant(0.03)
-Kf = Constant(0.0001)
+Df = Constant()
+Kf = Constant()
 
 # Chain-scission / degradation parameters
-k1 = Constant(1.0 / 650.0)
-k2 = Constant(0.0012)
-k3 = Constant(1.0)
-n_pow = Constant(1.0)
+k1 = Constant()
+k2 = Constant()
+k3 = Constant()
+n_pow = Constant()
 
 # Monomer diffusion coefficient
-Dm = Constant(0.01)
+Dm = Constant()
 
 # Initial molecular weight
-N0 = Constant(63810.0)
+N0 = Constant()
 
 # ================================================================
 # USER-DEFINED MECHANICAL CONSTANTS
@@ -247,14 +247,14 @@ N0 = Constant(63810.0)
 # nuf = Poisson's ratio of the degraded/newly formed network
 # ================================================================
 
-YM0 = Constant(1400.0)
-nu0 = Constant(0.3)
+YM0 = Constant()
+nu0 = Constant()
 
 lam0 = YM0 * nu0 / ((1.0 + nu0) * (1.0 - 2.0 * nu0))
 mu0 = YM0 / (2.0 * (1.0 + nu0))
 
-YMf = Constant(240.0)
-nuf = Constant(0.3)
+YMf = Constant()
+nuf = Constant()
 
 lamf = YMf * nuf / ((1.0 + nuf) * (1.0 - 2.0 * nuf))
 muf = YMf / (2.0 * (1.0 + nuf))
@@ -262,7 +262,7 @@ muf = YMf / (2.0 * (1.0 + nuf))
 # ================================================================
 # USER-DEFINED SWELLING CONSTANT
 # ================================================================
-beta_swelling = Constant(0.2)
+beta_swelling = Constant()
 
 # ================================================================
 # STRAIN DEFINITIONS
