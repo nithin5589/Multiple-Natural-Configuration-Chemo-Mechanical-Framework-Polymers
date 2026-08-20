@@ -106,3 +106,45 @@ boundaries = MeshFunction(
     "MeshFiles/model_facet_region.xml"
 )
 ```
+## Cartesian and Spherical Stress Output
+
+The mechanical solution in FEniCS is calculated in the global Cartesian coordinate system. The stress tensor is therefore initially obtained in terms of the Cartesian stress components:
+
+- `σxx`
+- `σyy`
+- `σzz`
+- `σxy`
+- `σxz`
+- `σyz`
+
+For spherical and partially spherical geometries, the Cartesian stress components can be transformed into the local spherical coordinate system for easier interpretation of the stress distribution.
+
+The transformed normal stress components are:
+
+- `σrr` — radial stress
+- `σθθ` — polar or circumferential stress
+- `σφφ` — azimuthal or circumferential stress
+
+The transformation is performed at each spatial location using the local radial, polar, and azimuthal directions determined from the spatial coordinates.
+
+The code provides spherical stress outputs for:
+
+- Total stress
+- Residual stress
+- History stress
+
+Typical output variables include:
+
+```text
+Stress_Total_rr
+Stress_Total_theta
+Stress_Total_phi
+
+Stress_Residual_rr
+Stress_Residual_theta
+Stress_Residual_phi
+
+Stress_History_rr
+Stress_History_theta
+Stress_History_phi
+```
