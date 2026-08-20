@@ -1,5 +1,4 @@
 # ================================================================
-# 3D HALF-SPHERE MULTIPHYSICS MODEL
 # Hydrolytic Degradation + Linear Viscoelastic Response
 #
 # Fields:
