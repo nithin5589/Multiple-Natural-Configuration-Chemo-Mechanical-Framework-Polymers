@@ -76,3 +76,33 @@ from dolfin import *
 mesh = Mesh("model.xml")
 boundaries = MeshFunction("size_t", mesh, "model_facet_region.xml")
 ```
+## Geometry and Mesh Definition
+
+The examples in this repository demonstrate two approaches for defining the finite element geometry and mesh in FEniCS.
+
+### Geometry Generated Directly in FEniCS
+
+For simple geometries, the computational domain can be generated directly within the Python script using the built-in FEniCS mesh-generation tools.
+
+For example, the linear elastic case uses a structured three-dimensional geometry created directly in FEniCS. The geometry dimensions, mesh resolution, and boundary locations can be modified within the script.
+
+This approach is convenient for simple benchmark geometries because no external mesh-generation step is required.
+
+### CAD Geometry and Gmsh Mesh Import
+
+For more complex geometries, the CAD model can be created or imported into Gmsh and meshed externally.
+
+The mesh is then converted to the legacy FEniCS XML format and imported into the Python code. The corresponding facet-region file is used to identify the boundaries required for the application of mechanical and transport boundary conditions.
+
+The mesh files used in the examples are stored in the `MeshFiles` directory.
+
+A typical mesh import is:
+
+```python
+mesh = Mesh("MeshFiles/model.xml")
+boundaries = MeshFunction(
+    "size_t",
+    mesh,
+    "MeshFiles/model_facet_region.xml"
+)
+```
