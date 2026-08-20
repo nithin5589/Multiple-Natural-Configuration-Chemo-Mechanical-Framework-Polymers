@@ -1,5 +1,4 @@
 # ================================================================
-# 3D MULTIPHYSICS MODEL WITH 1/8 SYMMETRY
 # Hydrolytic Degradation + Mechanical Response
 #
 # Fields:
@@ -222,20 +221,20 @@ Cf_n, N_n, Cm_n, deg_n, ue_n = split(u_n)
 # ================================================================
 
 # Fluid diffusion parameters
-Df = Constant()
-Kf = Constant()
+Df = Constant(None)
+Kf = Constant(None)
 
 # Chain-scission / degradation parameters
-k1 = Constant()
-k2 = Constant()
-k3 = Constant()
-n_pow = Constant()
+k1 = Constant(None)
+k2 = Constant(None)
+k3 = Constant(None)
+n_pow = Constant(None)
 
 # Monomer diffusion coefficient
-Dm = Constant()
+Dm = Constant(None)
 
 # Initial molecular weight
-N0 = Constant()
+N0 = Constant(None)
 
 # ================================================================
 # USER-DEFINED MECHANICAL CONSTANTS
@@ -247,14 +246,14 @@ N0 = Constant()
 # nuf = Poisson's ratio of the degraded/newly formed network
 # ================================================================
 
-YM0 = Constant()
-nu0 = Constant()
+YM0 = Constant(None)
+nu0 = Constant(None)
 
 lam0 = YM0 * nu0 / ((1.0 + nu0) * (1.0 - 2.0 * nu0))
 mu0 = YM0 / (2.0 * (1.0 + nu0))
 
-YMf = Constant()
-nuf = Constant()
+YMf = Constant(None)
+nuf = Constant(None)
 
 lamf = YMf * nuf / ((1.0 + nuf) * (1.0 - 2.0 * nuf))
 muf = YMf / (2.0 * (1.0 + nuf))
@@ -262,7 +261,7 @@ muf = YMf / (2.0 * (1.0 + nuf))
 # ================================================================
 # USER-DEFINED SWELLING CONSTANT
 # ================================================================
-beta_swelling = Constant()
+beta_swelling = Constant(None)
 
 # ================================================================
 # STRAIN DEFINITIONS
