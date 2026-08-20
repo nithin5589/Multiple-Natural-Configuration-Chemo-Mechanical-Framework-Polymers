@@ -76,5 +76,3 @@ from dolfin import *
 mesh = Mesh("model.xml")
 boundaries = MeshFunction("size_t", mesh, "model_facet_region.xml")
 ```
-boundaries = MeshFunction("size_t", mesh, "model_facet_region.xml")
-```
