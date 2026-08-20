@@ -19,6 +19,7 @@ A typical FEniCS installation can be verified in Python using:
 
 ```python
 from dolfin import *
+```
 
 ### Gmsh
 
@@ -49,3 +50,4 @@ The Gmsh mesh can be converted using:
 
 ```bash
 dolfin-convert model.msh model.xml
+```
